@@ -364,7 +364,7 @@ service qmuxd /system/bin/qmuxd
 
 service netmgrd /system/bin/netmgrd
     class late_start
-    group system
+    group system wakelock
 
 on property:ro.radio.noril=true
     stop ril-daemon
