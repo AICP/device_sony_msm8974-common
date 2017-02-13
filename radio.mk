@@ -3,7 +3,8 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so \
     rild.libargs=-d /dev/smd0 \
     ril.subscription.types=NV,RUIM \
-    ro.ril.enable.amr.wideband=1
+    ro.ril.enable.amr.wideband=1 \
+    ro.ril.telephony.mqanelements=5
 
 # LTE, GSM/WCDMA
 PRODUCT_PROPERTY_OVERRIDES += \
