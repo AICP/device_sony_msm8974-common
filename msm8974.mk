@@ -137,3 +137,8 @@ PRODUCT_PACKAGES += \
     wifilogd \
     wpa_supplicant \
     wpa_supplicant.conf
+    
+# Time
+PRODUCT_PACKAGES += \
+	timekeep \
+	TimeKeep 
