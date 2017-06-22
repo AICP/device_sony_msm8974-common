@@ -1,2 +1,5 @@
 allow audioserver system_data_file:sock_file { write };
 allow audioserver system_server:unix_stream_socket { connectto };
+allow audioserver tad_socket:sock_file write;
+allow audioserver tad:unix_stream_socket connectto;
+
