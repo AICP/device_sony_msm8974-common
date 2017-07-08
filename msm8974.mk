@@ -91,7 +91,8 @@ PRODUCT_COPY_FILES += \
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml
+    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
+    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml
 
 # Omx
 PRODUCT_PACKAGES += \
@@ -114,7 +115,15 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8974
+    gps.msm8974 \
+    libloc_core \
+    libloc_eng \
+    libgps.utils \
+    libloc_ds_api \
+    libloc_api_v02
+
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/gps/gps.conf:system/etc/gps.conf
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
