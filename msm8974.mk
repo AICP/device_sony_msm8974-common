@@ -75,6 +75,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/system/bin/credmgrfirstboot.sh:system/bin/credmgrfirstboot.sh
 
+# Camera
+PRODUCT_PACKAGES += \
+	tad_static \
+	wait4tad_static \
+	libshims_wvm \
+	libshims_signal \
+	libshims_idd \
+    libsonycamera
+
 # Media profile
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
