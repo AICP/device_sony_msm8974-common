@@ -16,7 +16,6 @@
 #
 
 import /init.sony.usb.rc
-import /init.qcom.power.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -328,6 +327,9 @@ on post-fs-data
     setprop persist.radio.add_power_save 1
 
     chown system /dev/block/platform/msm_sdcc.1/by-name
+
+    # communicate with mpdecision and thermald
+    mkdir /dev/socket/mpdecision 2770 root system
 
     setprop vold.post_fs_data_done 1
 
