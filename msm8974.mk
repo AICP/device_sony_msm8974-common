@@ -123,7 +123,7 @@ PRODUCT_PACKAGES += \
     libloc_api_v02
 
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/gps/gps.conf:system/etc/gps.conf
+    $(COMMON_PATH)/gps/etc/gps.conf:system/etc/gps.conf
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
