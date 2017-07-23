@@ -260,6 +260,24 @@ on post-fs
     chown system system /sys/class/leds/led:rgb_blue/pause_lo_multi
     chown system system /sys/class/leds/led:rgb_blue/pause_hi_multi
 
+    chown radio system /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+    chmod 664  /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+    chown radio system /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+    chmod 664  /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+    chown radio system /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies
+    chmod 664  /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies
+
+    chown radio system /sys/class/devfreq/qcom,cpubw.40/available_frequencies
+    chmod 664 /sys/class/devfreq/qcom,cpubw.40/available_frequencies
+    chown radio system /sys/class/devfreq/qcom,cpubw.40/available_governors
+    chmod 664 /sys/class/devfreq/qcom,cpubw.40/available_governors
+    chown radio system /sys/class/devfreq/qcom,cpubw.40/governor
+    chmod 664 /sys/class/devfreq/qcom,cpubw.40/governor
+    chown radio system /sys/class/devfreq/qcom,cpubw.40/max_freq
+    chmod 664 /sys/class/devfreq/qcom,cpubw.40/max_freq
+    chown radio system /sys/class/devfreq/qcom,cpubw.40/min_freq
+    chmod 664 /sys/class/devfreq/qcom,cpubw.40/min_freq
+
 on post-fs-data
     # Observe dnsmasq.leases file for dhcp information of soft ap.
     chown dhcp dhcp /data/misc/dhcp
