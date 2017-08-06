@@ -42,11 +42,11 @@
 
 /dev/socket/suntory(/.*)?				u:object_r:suntrold_sock_socket:s0
 
-#iddd
-/system/bin/iddd        u:object_r:iddd_exec:s0
-/idd(/.*)?                      u:object_r:iddd_file:s0
-/mnt/idd						u:object_r:iddd_file:s0
-/system/bin/idd-logreader		 u:object_r:iddd_exec:s0
+# In Device Diagnostics (idd)
+/system/bin/iddd                                         u:object_r:iddd_exec:s0
+/system/bin/idd-logreader                                u:object_r:iddd_exec:s0
+/idd(/.*)?                                               u:object_r:iddd_file:s0
+/mnt/idd                                                 u:object_r:iddd_file:s0
 
 # Taimport
 /data/etc(/.*)                           u:object_r:ta_data_file:s0
