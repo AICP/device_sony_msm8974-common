@@ -113,8 +113,8 @@ TARGET_RIL_VARIANT := caf
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += \
-    device/sony/msm8974-common/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#    device/sony/msm8974-common/sepolicy
 
 # Time
 BOARD_USES_QC_TIME_SERVICES := true
