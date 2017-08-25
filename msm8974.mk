@@ -59,6 +59,10 @@ PRODUCT_PACKAGES += \
     libtilerenderer \
     libI420colorconvert
 
+# HIDL
+ PRODUCT_COPY_FILES += \
+     $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
+
 # Ion
 PRODUCT_PACKAGES += \
     libion
