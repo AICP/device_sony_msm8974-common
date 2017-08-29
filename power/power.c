@@ -175,7 +175,17 @@ static void power_hint( __attribute__((unused)) struct power_module *module,
              }
              pthread_mutex_unlock(&low_power_mode_lock);
              break;
+        case POWER_HINT_VSYNC:
+             ALOGE("%s TODO: POWER_HINT_VSYNC", __func__);
+            break;
+        case POWER_HINT_CPU_BOOST:
+             ALOGE("%s TODO: POWER_HINT_CPU_BOOST", __func__);
+             break;
+        case POWER_HINT_LAUNCH:
+             ALOGE("%s TODO: POWER_HINT_LAUNCH", __func__);
+             break;
         default:
+			 ALOGE("%s TODO: hint id: %i", __func__, hint);
              break;
     }
 }
