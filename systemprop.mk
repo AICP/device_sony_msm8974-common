@@ -54,7 +54,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Storage & USB OTG
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.sdcardfs=true \
+    ro.sys.sdcardfs=false \
     persist.sys.isUsbOtgEnabled=true
 
 # Dalvik
