@@ -86,6 +86,7 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
 VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
+TARGET_USES_GRALLOC1_ADAPTER := true
 
 # Shader cache config options
 # Maximum size of the  GLES Shaders that can be cached for reuse.
