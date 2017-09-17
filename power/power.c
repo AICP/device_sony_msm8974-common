@@ -72,6 +72,8 @@ static bool freq_set[TOTAL_CPUS];
 static bool low_power_mode = false;
 static pthread_mutex_t low_power_mode_lock = PTHREAD_MUTEX_INITIALIZER;
 
+bool display_boost = false;
+
 int sysfs_write(char *path, char *s)
 {
     char buf[80];
@@ -193,6 +195,24 @@ static void power_hint( __attribute__((unused)) struct power_module *module,
 static void power_init(__attribute__((unused)) struct power_module *module)
 {
     ALOGI("%s", __func__);
+
+    int fd;
+    char buf[10] = {0};
+
+    fd = open("/sys/devices/soc0/soc_id", O_RDONLY);
+    if (fd >= 0) {
+        if (read(fd, buf, sizeof(buf) - 1) == -1) {
+            ALOGW("Unable to read soc_id");
+        } else {
+            int soc_id = atoi(buf);
+            if (soc_id == 194 || (soc_id >= 208 && soc_id <= 218) || soc_id == 178) {
+                display_boost = true;
+				ALOGI("%s: Enabling display boost", __func__);
+            } else {
+                ALOGI("%s: Soc %d not in list, disabling display boost", __func__, soc_id);
+            }
+        }
+        close(fd);
 }
 
 
