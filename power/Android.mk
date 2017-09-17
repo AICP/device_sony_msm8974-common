@@ -21,12 +21,23 @@ ifneq ($(TARGET_TAP_TO_WAKE_NODE),)
     LOCAL_CFLAGS += -DTAP_TO_WAKE_NODE=\"$(TARGET_TAP_TO_WAKE_NODE)\"
 endif
 
-LOCAL_SRC_FILES := power.c
+LOCAL_SRC_FILES := \
+                   power.c \
+                   utils.c \
+                   list.c \
+                   hint-data.c \
+                   power-8974.c \
+                   power-set.c
 LOCAL_SHARED_LIBRARIES := liblog libcutils
 LOCAL_MODULE := power.qcom
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_C_INCLUDES := hardware/libhardware/include
+
+#ifeq ($(TARGET_USES_INTERACTION_BOOST),true)
+    LOCAL_CFLAGS += -DINTERACTION_BOOST
+#endif
+
 
 include $(BUILD_SHARED_LIBRARY)
 

@@ -35,6 +35,13 @@
 #include <hardware/hardware.h>
 #include <hardware/power.h>
 
+#include "power-set.h"
+#include "utils.h"
+#include "metadata-defs.h"
+#include "hint-data.h"
+#include "performance.h"
+#include "power-common.h"
+
 #define STATE_ON "state=1"
 #define STATE_OFF "state=0"
 #define STATE_HDR_ON "state=2"
@@ -51,9 +58,16 @@
 #define NORMAL_MAX_FREQ "2265600"
 #define UEVENT_STRING "online@/devices/system/cpu/"
 
+/* RPM runs at 19.2Mhz. Divide by 19200 for msec */
+/*
+ * TODO: Control those values
+ */
+#define RPM_CLK 19200
+#define USINSEC 1000000L
+#define NSINUS 1000L
+
 static int client_sockfd;
 static struct sockaddr_un client_addr;
-static int last_state = -1;
 
 static struct pollfd pfd;
 static char *cpu_path_min[] = {
@@ -73,32 +87,12 @@ static bool low_power_mode = false;
 static pthread_mutex_t low_power_mode_lock = PTHREAD_MUTEX_INITIALIZER;
 
 bool display_boost = false;
+static int saved_interactive_mode = -1;
 
-int sysfs_write(char *path, char *s)
-{
-    char buf[80];
-    int len;
-    int ret = 0;
-    int fd = open(path, O_WRONLY);
+//interaction boost global variables
+static pthread_mutex_t s_interaction_lock = PTHREAD_MUTEX_INITIALIZER;
+static struct timespec s_previous_boost_timespec;
 
-    if (fd < 0) {
-        strerror_r(errno, buf, sizeof(buf));
-        ALOGE("Error opening %s: %s\n", path, buf);
-        return -1 ;
-    }
-
-    len = write(fd, s, strlen(s));
-    if (len < 0) {
-        strerror_r(errno, buf, sizeof(buf));
-        ALOGE("Error writing to %s: %s\n", path, buf);
-
-        ret = -1;
-    }
-
-    close(fd);
-
-    return ret;
-}
 
 void set_feature(__attribute__((unused))struct power_module *module, feature_t feature, int state)
 {
@@ -111,16 +105,42 @@ void set_feature(__attribute__((unused))struct power_module *module, feature_t f
 #endif
 }
 
-static void power_set_interactive(__attribute__((unused)) struct power_module *module, int on)
+long long calc_timespan_us(struct timespec start, struct timespec end) {
+    long long diff_in_us = 0;
+    diff_in_us += (end.tv_sec - start.tv_sec) * USINSEC;
+    diff_in_us += (end.tv_nsec - start.tv_nsec) / NSINUS;
+    return diff_in_us;
+}
+
+int __attribute__ ((weak)) set_interactive_override(__attribute__((unused)) struct power_module *module, __attribute__((unused)) int on)
+{   
+    return HINT_NONE;
+}
+
+static void power_set_interactive(struct power_module *module, int on)
 {
-    if (last_state == -1) {
-        last_state = on;
-    } else {
-        if (last_state == on)
-            return;
-        else
-            last_state = on;
+    char governor[80];
+    int rc = 255;
+
+    if (set_interactive_override(module, on) == HINT_HANDLED) {
+        return;
     }
+
+    ALOGI("Got set_interactive hint");
+
+    if (get_scaling_governor(governor, sizeof(governor)) == -1) {
+        ALOGE("Can't obtain scaling governor.");
+
+        return;
+    }
+
+    if (!on) {
+		rc = set_interactive_off(governor, saved_interactive_mode); 
+    } else {
+		rc = set_interactive_on(governor, saved_interactive_mode);
+    }
+
+    saved_interactive_mode = !!on;
 
     ALOGV("%s %s", __func__, (on ? "ON" : "OFF"));
 	ALOGE("%s TODO", __func__);
@@ -139,14 +159,89 @@ static void power_hint( __attribute__((unused)) struct power_module *module,
 
     switch (hint) {
         case POWER_HINT_INTERACTION:
-            ALOGV("POWER_HINT_INTERACTION");
-			ALOGE("%s TODO POWER_HINT_INTERACTION ", __func__);
+            {
+                ALOGV("POWER_HINT_INTERACTION");
+			    int duration_hint = 0;
+
+			    // little core freq bump for 1.5s
+			    int resources[] = {0x20C};
+			    int duration = 1500;
+			    static int handle_little = 0;
+
+			    // big core freq bump for 500ms
+			    int resources_big[] = {0x2312, 0x1F08};
+			    int duration_big = 500;
+			    static int handle_big = 0;
+
+			    // sched_downmigrate lowered to 10 for 1s at most
+			    // should be half of upmigrate
+			    int resources_downmigrate[] = {0x4F00};
+			    int duration_downmigrate = 1000;
+			    static int handle_downmigrate = 0;
+
+			    // sched_upmigrate lowered to at most 20 for 500ms
+			    // set threshold based on elapsed time since last boost
+			    int resources_upmigrate[] = {0x4E00};
+			    int duration_upmigrate = 500;
+			    static int handle_upmigrate = 0;
+
+			    // set duration hint
+			    if (data) {
+					duration_hint = *((int*)data);
+			    }
+
+			    struct timespec cur_boost_timespec;
+			    clock_gettime(CLOCK_MONOTONIC, &cur_boost_timespec);
+
+			    pthread_mutex_lock(&s_interaction_lock);
+			    long long elapsed_time = calc_timespan_us(s_previous_boost_timespec, cur_boost_timespec);
+
+			    if (elapsed_time > 750000)
+					elapsed_time = 750000;
+			    // don't hint if it's been less than 250ms since last boost
+			    // also detect if we're doing anything resembling a fling
+			    // support additional boosting in case of flings
+			    else if (elapsed_time < 250000 && duration_hint <= 750) {
+					pthread_mutex_unlock(&s_interaction_lock);
+					return;
+			    }
+
+			    s_previous_boost_timespec = cur_boost_timespec;
+			    pthread_mutex_unlock(&s_interaction_lock);
+
+			    // 95: default upmigrate for phone
+			    // 20: upmigrate for sporadic touch
+			    // 750ms: a completely arbitrary threshold for last touch
+			    int upmigrate_value = 95 - (int)(75. * ((elapsed_time*elapsed_time) / (750000.*750000.)));
+
+			    // keep sched_upmigrate high when flinging
+			    if (duration_hint >= 750)
+					upmigrate_value = 20;
+
+			    resources_upmigrate[0] = resources_upmigrate[0] | upmigrate_value;
+			    resources_downmigrate[0] = resources_downmigrate[0] | (upmigrate_value / 2);
+
+			    // modify downmigrate duration based on interaction data hint
+			    // 1000 <= duration_downmigrate <= 5000
+			    // extend little core freq bump past downmigrate to soften downmigrates
+			    if (duration_hint > 1000) {
+					if (duration_hint < 5000) {
+					    duration_downmigrate = duration_hint;
+					    duration = duration_hint + 750;
+					} else {
+					    duration_downmigrate = 5000;
+					    duration = 5750;
+					}
+			    }
+
+			    handle_little = interaction_with_handle(handle_little,duration, sizeof(resources)/sizeof(resources[0]), resources);
+			    handle_big = interaction_with_handle(handle_big, duration_big, sizeof(resources_big)/sizeof(resources_big[0]), resources_big);
+			    handle_downmigrate = interaction_with_handle(handle_downmigrate, duration_downmigrate, sizeof(resources_downmigrate)/sizeof(resources_downmigrate[0]), resources_downmigrate);
+				handle_upmigrate = interaction_with_handle(handle_upmigrate, duration_upmigrate, sizeof(resources_upmigrate)/sizeof(resources_upmigrate[0]), resources_upmigrate);
+
+            }
             break;
-#if 0
-        case POWER_HINT_VSYNC:
-            ALOGV("POWER_HINT_VSYNC %s", (data ? "ON" : "OFF"));
-            break;
-#endif
+
         case POWER_HINT_VIDEO_ENCODE:
             process_video_encode_hint(data);
             break;
@@ -178,7 +273,6 @@ static void power_hint( __attribute__((unused)) struct power_module *module,
              pthread_mutex_unlock(&low_power_mode_lock);
              break;
         case POWER_HINT_VSYNC:
-             ALOGE("%s TODO: POWER_HINT_VSYNC", __func__);
             break;
         case POWER_HINT_CPU_BOOST:
              ALOGE("%s TODO: POWER_HINT_CPU_BOOST", __func__);
@@ -213,6 +307,7 @@ static void power_init(__attribute__((unused)) struct power_module *module)
             }
         }
         close(fd);
+   }
 }
 
 
