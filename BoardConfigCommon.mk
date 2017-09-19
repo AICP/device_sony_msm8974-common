@@ -71,8 +71,7 @@ BOARD_HARDWARE_CLASS += device/sony/msm8974-common/cmhw
 # Font
 EXTENDED_FONT_FOOTPRINT := true
 
-# For android_filesystem_config.h
-TARGET_FS_CONFIG_GEN += device/sony/msm8974-common/config.fs
+TARGET_FS_CONFIG_GEN += device/sony/msm8974-common/aids.fs
 
 # GPS definitions for Qualcomm solution
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)

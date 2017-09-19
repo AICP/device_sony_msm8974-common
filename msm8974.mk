@@ -114,7 +114,8 @@ PRODUCT_PACKAGES += \
 
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += \
-   fs_config_files
+    fs_config_files \
+    liboemaids
 
 # GPS
 PRODUCT_PACKAGES += \
