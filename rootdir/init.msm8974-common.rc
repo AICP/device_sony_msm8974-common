@@ -43,7 +43,7 @@ on init
     mkdir /dev/bus/usb 0755 root root
     
     wait /dev/block/mmcblk0p1
-    chown tad tad /dev/block/mmcblk0p1
+    chown oem_5997 oem_5997 /dev/block/mmcblk0p1
     chmod 0770 /dev/block/mmcblk0p1
 
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
@@ -358,8 +358,8 @@ on post-fs-data
 
     exec u:r:qti_init_shell:s0 -- /system/bin/rm -r /idd/lost+found
     mkdir /idd/lost+found 0770 root root
-    mkdir /idd/output 0755 idd idd
-    mkdir /idd/socket 0711 idd idd
+    mkdir /idd/output 0755 oem_5987 oem_5987
+    mkdir /idd/socket 0711 oem_5987 oem_5987
     restorecon_recursive /idd
     start wvkbd_installer
 
@@ -434,26 +434,26 @@ service audioserver /system/bin/audioserver
     class main
     user audioserver
     # media gid needed for /dev/fm (radio) and for /data/misc/media (tee)
-    group audio trimarea camera drmrpc inet media mediadrm net_bt net_bt_admin net_bw_acct qcom_diag
+    group audio oem_5993 camera drmrpc inet media mediadrm net_bt net_bt_admin net_bw_acct qcom_diag
     ioprio rt 4
 
-service drm /system/bin/drmserver
+    service drm /system/bin/drmserver
     class main
     user drm
-    group drm system inet drmrpc readproc trimarea
+    group drm system inet drmrpc readproc oem_5993
 
 
 service media /system/bin/mediaserver
     class main
     user media
-    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm credmgr_client system
+    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm oem_5996 system
     ioprio rt 4
 
 
 service mediadrm /system/bin/mediadrmserver
     class main
     user media
-    group mediadrm drmrpc trimarea
+    group mediadrm drmrpc oem_5993
     ioprio rt 4
 
 service mpdecision /system/bin/mpdecision --avg_comp
