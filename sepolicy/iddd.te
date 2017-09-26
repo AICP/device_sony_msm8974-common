@@ -2,6 +2,7 @@
 type iddd, domain;
 
 type iddd_exec, exec_type, file_type;
+type iddd_file, file_type;
 init_daemon_domain(iddd)
 
 type_transition iddd system_data_file:file iddd_file;
@@ -35,3 +36,4 @@ allow iddd ta_prop:file { getattr open read };
 
 # Allow reading via symlink
 allow iddd iddd_file:lnk_file { read };
+
