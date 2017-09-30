@@ -28,8 +28,7 @@
 /system/vendor/bin/iddd                                             u:object_r:iddd_exec:s0
 /system/vendor/bin/idd-logreader                                    u:object_r:iddd_exec:s0
 
-
-## Radio related
+# Radio related
 /dev/rmnet_ctrl                        u:object_r:radio_device:s0
 # mux controller
 /dev/rmnet_mux_ctrl                    u:object_r:radio_device:s0
