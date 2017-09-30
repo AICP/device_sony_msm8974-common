@@ -1,0 +1,68 @@
+#============= hal_wifi_supplicant_default ==============
+allow hal_wifi_supplicant_default firmware_file:file { open read };
+allow hal_wifi_supplicant_default proc:file { open read };
+
+#============= hwservicemanager ==============
+allow hwservicemanager proc:file { open read };
+allow hwservicemanager sysfs:file { getattr open read };
+
+#============= idmap ==============
+allow idmap proc:file { open read };
+
+#============= init ==============
+allow init netd:unix_stream_socket connectto;
+allow init netd_socket:sock_file write;
+allow init self:netlink_kobject_uevent_socket { bind create read setopt };
+allow init self:netlink_route_socket read;
+allow init self:netlink_socket write;
+allow init self:rawip_socket setopt;
+allow init self:socket { bind create read write };
+allow init sensors_data_file:file append;
+allow init smd_device:chr_file { write };
+allow init system_data_file:file append;
+allow init system_data_file:sock_file write;
+allow init tee_device:chr_file { write };
+
+#============= mediacodec ==============
+allow mediacodec sysfs:file { open read };
+
+#============= mediadrmserver ==============
+allow mediadrmserver proc:file { open read };
+
+#============= qti_init_shell ==============
+allow qti_init_shell rootfs:file entrypoint;
+
+#============= shell ==============
+allow shell kernel:system syslog_read;
+allow shell sysfs:file { getattr open read };
+
+#============= system_server ==============
+allow system_server sensors_device:chr_file getattr;
+allow system_server socket_device:sock_file write;
+
+#============= tad ==============
+allow tad sysfs:file { getattr open read };
+
+#============= toolbox ==============
+allow toolbox init:fifo_file read;
+allow toolbox init:unix_stream_socket connectto;
+allow toolbox proc:file read;
+allow toolbox property_socket:sock_file write;
+allow toolbox sensors_data_file:dir getattr;
+allow toolbox smem_log_device:chr_file { read write };
+
+#============= tzdatacheck ==============
+allow tzdatacheck proc:file { open read };
+allow tzdatacheck sysfs:file { getattr open read };
+
+#============= vdc ==============
+allow vdc proc:file { open read };
+allow vdc sysfs:file { getattr open read };
+
+#============= vndservicemanager ==============
+allow vndservicemanager proc:file { open read };
+allow vndservicemanager sysfs:file { getattr open read };
+
+#============= webview_zygote ==============
+allow webview_zygote proc:file { open read };
+allow webview_zygote sysfs:file { getattr open read };
