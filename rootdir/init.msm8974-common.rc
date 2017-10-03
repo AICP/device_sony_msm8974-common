@@ -284,8 +284,6 @@ on post-fs-data
 
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
-    mkdir /data/tombstones 0755 system system
-    mkdir /data/tombstones/vendor 0755 system system
     mkdir /data/pc 0700 radio radio
 
     # Create directory used by audio subsystem
