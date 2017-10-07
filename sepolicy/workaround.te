@@ -66,3 +66,16 @@ allow vndservicemanager sysfs:file { getattr open read };
 #============= webview_zygote ==============
 allow webview_zygote proc:file { open read };
 allow webview_zygote sysfs:file { getattr open read };
+
+#============= crash_dump ==============
+allow crash_dump proc:file { open read };
+allow crash_dump sysfs:file { getattr open read };
+
+#============= tombstoned ==============
+allow tombstoned proc:file { open read };
+allow tombstoned sysfs:file { getattr open read };
+
+#============= uim ==============
+auditallow uim bluetooth_prop:file { open read };
+auditallow uim hci_attach_dev:chr_file ioctl;
+

@@ -4,6 +4,7 @@ init_daemon_domain(wv)
 
 allow wv ion_device:chr_file { open read };
 allowxperm wv ion_device:chr_file ioctl msm_sock_ipc_ioctls;
+allowxperm wv ion_device:socket ioctl msm_sock_ipc_ioctls;
 allow wv suntrold:unix_stream_socket connectto;
 allow wv suntrold_sock_socket:dir search;
 allow wv suntrold_sock_socket:sock_file write;
@@ -13,12 +14,20 @@ allow wv tad_socket:unix_stream_socket connectto;
 allow wv tee_device:chr_file { open read write };
 allow wv tee_device:unix_stream_socket connectto;
 allowxperm wv tee_device:chr_file ioctl msm_sock_ipc_ioctls;
+allowxperm wv tee_device:socket ioctl msm_sock_ipc_ioctls;
 allow wv tee_device:sock_file write;
-allowxperm wv tad_socket:socket ioctl msm_sock_ipc_ioctls;
 
 #============= wv ==============
 allow wv firmware_file:dir search;
 allow wv firmware_file:file { getattr open read };
+
+#============= wv ==============
+# TODO: wrong labeled dest!
 allow wv proc:file { open read };
 allow wv sysfs:file { getattr open read };
+
+
+#============= wv ==============
+allow wv ion_device:chr_file ioctl;
+allow wv tee_device:chr_file ioctl;
 
