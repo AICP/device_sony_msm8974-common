@@ -21,6 +21,7 @@
 # idd/rca files
 #
 /idd(/.*)?                                                          u:object_r:iddd_file:s0
+/idd/socket                                                         u:object_r:iddd_socket:s0
 /idd/socket(/.*)?                                                   u:object_r:iddd_socket:s0
 /idd/output(/.*)?                                                   u:object_r:iddd_file:s0
 /idd/startup-prober(/.*)?                                           u:object_r:iddd_file:s0
@@ -43,6 +44,9 @@
 
 /data/system/default_values            u:object_r:mpctl_data_file:s0
 
+/data/misc/camera(/.*)?						u:object_r:camera_socket:s0
+/data/credmgr(/.*)?						u:object_r:credmgrd_data_file:s0
+
 /data/etc                              u:object_r:ta_data_file:s0
 /data/etc/wlan.*                       u:object_r:wifi_data_file:s0
 /data/etc/bluetooth_bdaddr             u:object_r:bluetooth_data_file:s0
@@ -50,6 +54,8 @@
 /data/misc/quipc(/.*)?                 u:object_r:location_data_file:s0
 /data/misc/quipc/gsiff_socket          u:object_r:location_socket:s0
 /data/misc/gsiff_ctrl_q                u:object_r:location_data_file:s0
+
+/data/time(/.*)?						u:object_r:time_data_file:s0
 
 /system/bin/sct_service                u:object_r:sct_exec:s0
 /system/bin/suntrold                   u:object_r:suntrold_exec:s0
