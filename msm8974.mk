@@ -114,7 +114,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	libshims_signal \
 	libshims_idd \
-    libsonycamera
+	libsonycamera \
+	libGraphicBuffer
 
 # Recovery
 PRODUCT_PACKAGES += \
