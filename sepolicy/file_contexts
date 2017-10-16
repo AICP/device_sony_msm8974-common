@@ -15,7 +15,6 @@
 /dev/block/platform/msm_sdcc\.1/by-name/TA                                        u:object_r:trim_area_partition_device:s0
 /dev/block/platform/msm_sdcc\.1/by-name/Userdata                                  u:object_r:userdata_block_device:s0
 /dev/block/platform/msm_sdcc\.1/by-name/apps_log                                  u:object_r:misc_block_device:s0
-<<<<<<< HEAD
 
 ###################################
 # idd/rca files
@@ -43,8 +42,6 @@
 /dev/rfkill                            u:object_r:rfkill_device:s0
 
 /data/system/default_values            u:object_r:mpctl_data_file:s0
-
-/data/misc/camera(/.*)?						u:object_r:camera_socket:s0
 /data/credmgr(/.*)?						u:object_r:credmgrd_data_file:s0
 
 /data/etc                              u:object_r:ta_data_file:s0

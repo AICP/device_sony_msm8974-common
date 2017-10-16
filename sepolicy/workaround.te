@@ -33,6 +33,7 @@ allow mediadrmserver proc:file { open read };
 allow qti_init_shell rootfs:file entrypoint;
 
 #============= shell ==============
+
 allow init { domain -lmkd -crash_dump }:process noatsecure;
 allow shell sysfs:file { getattr open read };
 
@@ -78,4 +79,3 @@ allow tombstoned sysfs:file { getattr open read };
 #============= uim ==============
 auditallow uim bluetooth_prop:file { open read };
 auditallow uim hci_attach_dev:chr_file ioctl;
-
