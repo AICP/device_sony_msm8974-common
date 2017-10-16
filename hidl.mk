@@ -12,7 +12,11 @@ PRODUCT_PACKAGES += \
 	android.hardware.camera.provider@2.4-impl \
 	android.hardware.camera.provider@2.4 \
 	android.hardware.camera.device@1.0
-	
+
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl 
+    
 # Display
 PRODUCT_PACKAGES += \
  	android.hardware.graphics.allocator@2.0-impl \
