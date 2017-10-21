@@ -42,7 +42,6 @@
 /dev/rfkill                            u:object_r:rfkill_device:s0
 
 /data/system/default_values            u:object_r:mpctl_data_file:s0
-/data/credmgr(/.*)?						u:object_r:credmgrd_data_file:s0
 
 /data/etc                              u:object_r:ta_data_file:s0
 /data/etc/wlan.*                       u:object_r:wifi_data_file:s0
@@ -92,12 +91,6 @@
 
 /dev/socket/suntory(/.*)?				u:object_r:suntrold_sock_socket:s0
 
-# In Device Diagnostics (idd)
-/system/bin/iddd                                         u:object_r:iddd_exec:s0
-/system/bin/idd-logreader                                u:object_r:iddd_exec:s0
-/idd(/.*)?                                               u:object_r:iddd_file:s0
-/mnt/idd                                                 u:object_r:iddd_file:s0
-
 # Taimport
 /data/etc(/.*)                           u:object_r:ta_data_file:s0
 
@@ -106,12 +99,8 @@
 /data/scd(/.*)							u:object_r:scd_data:s0
 /system/bin/scdnotifier					u:object_r:scd_exec:s0
 
-/system/bin/wvkbd						u:object_r:wv_exec:s0
-
-
 ###########
 #credmgrd
-/system/bin/credmgrd 					u:object_r:credmgrd_exec:s0
 /system/bin/credmgrfirstboot.sh			u:object_r:credmgrd_exec:s0
 /dev/socket/credmgr						u:object_r:credmgrd_socket:s0
 /data/credmgr(/.*)?						u:object_r:credmgrd_data_file:s0
@@ -124,7 +113,6 @@
 /dev/block/mmcblk0p1					u:object_r:tad_block_device:s0
 
 # macaddrsetup
-/system/bin/macaddrsetup                 u:object_r:addrsetup_exec:s0
 /sys/devices/platform/bcmdhd_wlan/macaddr    u:object_r:sysfs_addrsetup:s0
 
 #KGSL
