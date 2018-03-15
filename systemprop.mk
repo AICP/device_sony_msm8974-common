@@ -81,6 +81,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.HAL3.enabled=0 \
     camera2.portability.force_api=1
 
+# Wi-Fi interface name
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.interface=wlan0
+
 # MPDecision
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.perf.cores_online=2 \
