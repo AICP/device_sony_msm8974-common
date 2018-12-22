@@ -84,6 +84,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
 
+# Memory optimizations	
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.qti.am.reschedule_service=true \
+    ro.vendor.qti.sys.fw.bservice_enable=true
+
 # MPDecision
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.perf.cores_online=2 \
