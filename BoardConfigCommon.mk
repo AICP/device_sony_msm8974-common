@@ -72,7 +72,6 @@ TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
 # Charger
 HEALTHD_ENABLE_TRICOLOR_LED := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
-BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BACKLIGHT_PATH :=/sys/class/leds/lcd-backlight/brightness
 RED_LED_PATH := /sys/class/leds/led:rgb_red/brightness
 GREEN_LED_PATH := /sys/class/leds/led:rgb_green/brightness
