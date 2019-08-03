@@ -80,6 +80,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libion
 
+# JamesDSPManager
+PRODUCT_PACKAGES += \
+    JamesDSPManager \
+    libjamesDSPImpulseToolbox
+
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8974
