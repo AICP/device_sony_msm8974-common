@@ -136,6 +136,7 @@ TARGET_USES_INTERACTION_BOOST := true
 
 #BOARD_SEPOLICY_DIRS += \
 #    device/sony/msm8974-common/sepolicy
+BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy-minimal
 
 # Treble
 DEVICE_MANIFEST_FILE := device/sony/msm8974-common/treble-manifest.xml
