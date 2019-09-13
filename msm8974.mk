@@ -164,3 +164,7 @@ PRODUCT_PACKAGES += \
     wifilogd \
     wpa_supplicant \
     wpa_supplicant.conf
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/toybox_static:$(TARGET_RECOVERY_ROOT_OUT)/system/bin/toybox_static \
+    $(LOCAL_PATH)/toybox_static:$(TARGET_ROOT_OUT)/sbin/toybox_init
