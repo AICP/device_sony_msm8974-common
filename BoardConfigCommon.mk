@@ -132,10 +132,10 @@ TARGET_PROVIDES_LIBLIGHT := true
 TARGET_USES_INTERACTION_BOOST := true
 
 # SELinux
-include device/qcom/sepolicy-legacy/sepolicy.mk
+#include device/qcom/sepolicy-legacy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += \
-    device/sony/msm8974-common/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#    device/sony/msm8974-common/sepolicy
 
 # Treble
 DEVICE_MANIFEST_FILE := device/sony/msm8974-common/treble-manifest.xml
