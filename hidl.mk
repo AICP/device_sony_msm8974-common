@@ -6,8 +6,8 @@ PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.1-impl
 
 # Bluetooth
-PRODUCT_PACKAGES += \
-	android.hardware.bluetooth@1.0-service
+#PRODUCT_PACKAGES += \
+#	android.hardware.bluetooth@1.0-service
 
 # Camera
 PRODUCT_PACKAGES += \
