@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "74b2fc83_6a33498f",
+        "filename": "overlay/frameworks/base/packages/SystemUI/res/values/config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1375
+      },
+      "writtenOn": "2020-04-17T07:20:42Z",
+      "side": 1,
+      "message": "please fix my  typo ;.)",
+      "revId": "19381417c5441ce424d2d4f7678834f76e98e1dc",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}
