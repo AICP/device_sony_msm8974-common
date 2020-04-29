@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83003881_0c6561db",
+        "filename": "msm8974.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1375
+      },
+      "writtenOn": "2020-04-29T14:33:51Z",
+      "side": 1,
+      "message": "you can remove the line 86 - not needed anymore",
+      "revId": "854e0b3ea88a93ac83ae7a53a0aa702ec17354e4",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}
