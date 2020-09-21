@@ -149,6 +149,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Snap
 
+# Radio
+PRODUCT_PACKAGES += \
+    libshims_ril
+
 # Recovery
 PRODUCT_PACKAGES += \
     keycheck

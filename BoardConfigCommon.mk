@@ -143,6 +143,10 @@ TARGET_USES_INTERACTION_BOOST := true
 #BOARD_SEPOLICY_DIRS += \
 #    device/sony/msm8974-common/sepolicy
 
+# Shims
+TARGET_LD_SHIM_LIBS := \
+    /system/vendor/lib/libril-qc-qmi-1.so|libshims_ril.so
+
 # Treble
 DEVICE_MANIFEST_FILE := device/sony/msm8974-common/treble-manifest.xml
 PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
