@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "265c3570_51632646",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 562
+      },
+      "writtenOn": "2020-12-06T06:31:06Z",
+      "side": 1,
+      "message": "Wait until upstream merged.\nhttps://review.lineageos.org/c/LineageOS/android_system_sepolicy/+/292244",
+      "revId": "7d10a3a06a63de6ae00e1d25fedfb3a5c195328c",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}
