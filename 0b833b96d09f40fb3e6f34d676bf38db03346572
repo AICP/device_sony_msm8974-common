@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86a6d1d5_f0111b4a",
+        "filename": "BoardConfigCommon.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 562
+      },
+      "writtenOn": "2020-12-08T15:59:22Z",
+      "side": 1,
+      "message": "Not needed this line.",
+      "revId": "0b833b96d09f40fb3e6f34d676bf38db03346572",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}
