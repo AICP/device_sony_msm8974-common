@@ -1,3 +1,0 @@
-# Allow firmware reading for AP
-allow hostapd firmware_file:file { open read };
-

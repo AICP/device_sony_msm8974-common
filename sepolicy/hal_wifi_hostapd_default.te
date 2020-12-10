@@ -1,1 +1,0 @@
-allow hal_wifi_hostapd_default rfkill_device:chr_file { open read };
