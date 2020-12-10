@@ -1,15 +1,12 @@
-# debugfs
-type debugfs_kgsl, debugfs_type, fs_type;
-
-# /dev/socket
-type tad_socket, file_type;
-type ta_data_file, file_type;
-
-# sysfs
-type sysfs_subsys, sysfs_type, fs_type;
-type sysfs_camera_torch, sysfs_type, file_type;
-type sysfs_kcal_file, sysfs_type, file_type;
-type sysfs_touch, fs_type, sysfs_type;
+# Macaddrsetup
+type addrsetup, domain;
+type addrsetup_exec, exec_type, file_type;
 type sysfs_addrsetup, fs_type, sysfs_type;
-type sysfs_timekeep, fs_type, sysfs_type;
-allow sysfs_type sysfs:filesystem associate;
+
+# Thermanager
+type thermanager, domain;
+type thermanager_exec, exec_type, file_type;
+
+# TimeKeep
+type timekeep, domain;
+type timekeep_exec, exec_type, file_type;
