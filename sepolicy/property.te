@@ -1,5 +1,2 @@
-# property service keys
-type timekeep_prop, property_type;
-type tee_prop, property_type;
-type ta_prop, property_type;
-type anc_prop, property_type;
+# Timekeep
+type vendor_timekeep_prop, property_type;
