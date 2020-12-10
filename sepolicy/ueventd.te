@@ -1,3 +1,1 @@
-allow ueventd sysfs_camera_torch:file { open write };
-
-allow ueventd proc:file { open read getattr };
+allow ueventd self:capability sys_nice;
