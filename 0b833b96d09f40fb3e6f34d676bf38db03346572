@@ -16,6 +16,24 @@
       "message": "Not needed this line.",
       "revId": "0b833b96d09f40fb3e6f34d676bf38db03346572",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ee23cd8_4f4df051",
+        "filename": "BoardConfigCommon.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1331
+      },
+      "writtenOn": "2020-12-14T18:54:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86a6d1d5_f0111b4a",
+      "revId": "0b833b96d09f40fb3e6f34d676bf38db03346572",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }
