@@ -3,6 +3,9 @@ type addrsetup, domain;
 type addrsetup_exec, exec_type, file_type;
 type sysfs_addrsetup, fs_type, sysfs_type;
 
+# procfs
+type proc_last_kmsg, fs_type, proc_type;
+
 # Thermanager
 type thermanager, domain;
 type thermanager_exec, exec_type, file_type;
