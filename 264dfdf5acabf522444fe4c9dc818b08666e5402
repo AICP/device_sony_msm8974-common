@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f43386a0_e756c55f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1331
+      },
+      "writtenOn": "2021-04-23T18:33:34Z",
+      "side": 1,
+      "message": "There\u0027s another approach without the need of modifying things in system.\nMaybe we should stick to this.\nhttps://review.lineageos.org/c/LineageOS/android_device_sony_shinano-common/+/307121/5",
+      "revId": "264dfdf5acabf522444fe4c9dc818b08666e5402",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}
