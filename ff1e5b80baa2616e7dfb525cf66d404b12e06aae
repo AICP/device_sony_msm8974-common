@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8e359a8_c93f3d12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1331
+      },
+      "writtenOn": "2021-05-13T12:04:40Z",
+      "side": 1,
+      "message": "This is needed to build macaddrsetup from newest lineage upstream.\nThe build barrier does not exist on aicp hosted macaddrsetup.\n\nSo this can be dropped once the aicp macaddrsetup is updated.",
+      "revId": "ff1e5b80baa2616e7dfb525cf66d404b12e06aae",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}
